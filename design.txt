@@ -1,0 +1,152 @@
+1. Problem Statement:
+A program needs to collect three psychometric data values from the PHQ9,
+ GAD7, and MMPI. These values will form the baseline for the client;
+ subsequent visits need to compare visit scores to the baseline.
+
+ Depending on what the difference, what actions should
+ be taken (choice a, choice b, choice c)
+
+Nouns: initial PHQ9, GAD7, MMPI; followup PHQ9, GAD7, MMPI
+
+Verbs: difference, convert
+
+2. Defining Diagram
+
+INPUT: clientName; basePHQ9, baseGAD7, baseMMPI; followupVisitPHQ9, followupVisitGAD7, followupVisitMMPI
+
+PROCESSING:
+differencePHQ9 = basePHQ9 - followupVisitPHQ9
+differenceGAD7 = baseGAD7 - followupVisitGAD7 - base GAD7
+differenceMMPI = baseMMPI - followupVisitMMPI - base MMPI
+
+OUTPUT:
+client name
+differencePHQ9
+differenceGAD7
+differenceMMPI
+
+Step 3) Solution Algorithm
+
+
+SOLUTION ALGORITHM:
+mentalHealthMetrics
+    prompt for clientName with "What is the first and last name of client?"
+    prompt for basePHQ9 value with "Enter the score from the initial PHQ9"
+    convert basePHQ9 to number
+    prompt for baseGAD7 value with "Enter the initial score from the GAD7"
+    convert baseGAD7 to number
+    prompt for baseMMPI value with "Enter the initial score from the MMPI"
+    convert baseMMPI to number
+
+    prompt for followupVisitPHQ9 with "Enter the score from the PHQ9 at follow up."
+    convert followupPHQ9 to number
+    prompt for followupVisitGAD7 with "Enter the score from the GAD7 at follow up."
+    convert followupVisitGAD7 to number
+    prompt for followupVisitMMPI with "Enter the score from the MMPIat follow up."
+    convert followupVisitMMPI to number
+
+
+   difference = (basePHQ9 - followupVisitPHQ9)
+   difference = (baseGAD7 - followupVisitGAD7)
+   difference = (baseMMPI - followupVisitMMPI)
+
+   IF (NaN(difference))
+    THEN output = "You have entered invalid input; please make sure you are only
+                   entering numeric values"
+   IF (PHQ9, GAD7, MMPI) difference > 0 || (PHQ9, GAD7, MMPI) difference < 6
+    THEN output="After the last appointment " + clientName + "'s mental health " +
+                       "experienced a slight positive trajectory
+   ELSEIF (PHQ9, GAD7, MMPI) difference > 7 || (PHQ9, GAD7, MMPI) < 13
+    THEN output = ""After the last appointment" + clientName + " 's mental health"
+                  "experienced a significant positive trajectory; inquire about life changes."
+                  + "\n\nContinue working with " + clientName + "if possible."
+
+    ELSEIF (PHQ9, GAD7, MMPI) > 14
+    THEN output = "Since the last appointment " + clientName + "experienced an extreme positive shift" +
+                  "\nIf this is a sudden shift, and not the result of a major life change" +
+                  ", consider screening for a manic episode"
+   ENDIF
+  ENDIF
+
+END
+
+Step 4) Test Cases
+
+VARIABLES: client name; basePHQ9, baseGAD7, baseMMPI; followupVisitPHQ9, followupVisitGAD7
+, followupVisitMMPI
+
+TEST CASE 1:
+  INPUT VALUES:
+  Bob Jones; 12, 13, 14; 10, 11, 12
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  After the last appointment Bob Jones's mental health experienced a slight positive trajectory
+
+  Since the last visit Bob Jones experienced the following changes:
+
+  PHQ9 change: 2.
+  GAD7 change: 2.
+  MMPI change: 2.
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+ After the last appointment Bob Jones's mental health experienced a slight positive trajectory
+
+ Since the last visit Bob Jones experienced the following changes:
+
+ PHQ9 change: 2.
+ GAD7 change: 2.
+ MMPI change: 2.
+
+
+TEST CASE 2:
+  INPUT VALUES:
+  Jim Johnson; 12, 5, 9; 13, 18, 20
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  "Consider different counseling technique and/or a case review"
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  After the last appointment Jim Johnson's mental health experienced a significant positive trajectory; inquire about
+  life changes.
+
+  Continue working with Jim Johnson if possible.
+
+  Since the last visit Jim Johnson experienced the following changes:
+
+  PHQ9 change: 9.
+  GAD7 change: 9.
+  MMPI change: 9.
+
+TEST CASE 3:
+  INPUT VALUES:
+  Tom Jones; 25, 25, 25; 10, 10, 10
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  "Suggest follow-up visit for Bob within 2 weeks"
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  Since the last appointment Tom Jones experienced an extreme positive shift
+  If this is a sudden shift, and not the result of a major life change, consider screening for a manic episode
+
+  Since the last visit Tom Jones experienced the following changes:
+
+  PHQ9 change: 15.
+  GAD7 change: 15.
+  MMPI change: 15.
+
+TEST CASE 4:
+  INPUT VALUES: Sue Summers; 5a, 6b, 7c; x, y, z
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  "Invalid data has been detected; please double check your entry to be certain that
+  only numerical data is being entered."
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  You have entered invalid input; please make sure you are only entering numeric values
+
+  Since the last visit Sue Summers experienced the following changes:
+
+  PHQ9 change: NaN.
+  GAD7 change: NaN.
+  MMPI change: NaN.
+

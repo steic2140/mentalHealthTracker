@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lab Template</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Programming Fundamentals</h1>
+        <h2>Lab Template</h2>
+      </header>
+
+      <main>
+        <!-- YOUR NAME STARTS HERE -->
+
+        Chris Steines
+
+        <!-- YOUR NAME ENDS HERE -->
+
+        <h3>Step 1) Problem Statement</h3>
+<pre class="pseudocode">
+1. Problem Statement:
+  A program needs to collect three psychometric data values from the PHQ9,
+ GAD7, and MMPI. These values will form the baseline for the client;
+ subsequent visits need to compare visit scores to the baseline.
+
+ Depending on what the difference, what actions should
+ be taken (choice a, choice b, choice c)
+
+Nouns: PHQ9, GAD7, MMPI
+
+Verbs: difference, baseline, visitValue, convert
+
+</pre>
+
+        <h3>Step 2) Defining Diagram</h3>
+<pre class="pseudocode">
+INPUT:
+  clientName; basePHQ9, baseGAD7, baseMMPI; followupVisitPHQ9, followupVisitGAD7,
+  followupVisitMMPI
+
+PROCESSING:
+  differencePHQ9 = basePHQ9 - followupVisitPHQ9
+  differenceGAD7 = baseGAD7 - followupVisitGAD7
+  differenceMMPI = baseMMPI - followupVisitMMPI
+
+OUTPUT:
+  client name
+  differencePHQ9
+  differenceGAD7
+  differenceMMPI
+
+</pre>
+
+        <h3>Step 3) Solution Algorithm</h3>
+<pre class="pseudocode">
+SOLUTION ALGORITHM:
+  mentalHealthMetrics
+    prompt for clientName with "What is the first and last name of client?"
+    prompt for basePHQ9 value with "Enter the score from the PHQ9"
+    convert basePHQ9 to number
+    prompt for baseGAD7 value with "Enter the score from the GAD7"
+    convert baseGAD7 to number
+    prompt for baseMMPI value with "Enter the score from the GAD7"
+    convert baseMMPI to number
+
+    prompt for followupVisitPHQ9 with "Enter the score from the PHQ9"
+    convert followupVisitPHQ9 to number
+    prompt for followupVisitGAD7 with "Enter the score from the GAD7"
+    convert followupVisitGAD7 to number
+    prompt for followupVisitMMPI with "Enter the score from the MMPI"
+    convert followupVisitMMPI to number
+
+
+   difference = (basePHQ9 - followupPHQ9)
+   difference = (baseGAD7 - followupVisitGAD7)
+   difference = (baseMMPI - followupVisitMMPI)
+
+ IF (NaN(difference))
+    THEN output = "You have entered invalid input; please make sure you are only
+                   entering numeric values"
+   IF (PHQ9, GAD7, MMPI) difference > 0 || (PHQ9, GAD7, MMPI) difference < 6
+    THEN output="After the last appointment " + clientName + "'s mental health " +
+                       "experienced a slight positive trajectory"
+   ELSEIF (PHQ9, GAD7, MMPI) difference > 7 || (PHQ9, GAD7, MMPI) < 13
+    THEN output = ""After the last appointment" + clientName + " 's mental health"
+                  "experienced a significant positive trajectory; inquire about life changes."
+                  + "\n\nContinue working with " + clientName + "if possible."
+
+    ELSEIF (PHQ9, GAD7, MMPI) > 14
+    THEN output = "Since the last appointment " + clientName + "experienced an extreme positive shift" +
+                  "\nIf this is a sudden shift, and not the result of a major life change" +
+                  ", consider screening for a manic episode"
+   ENDIF
+  ENDIF
+
+END
+
+  outputScoreSummary =
+  Since the last visit clientName experienced the following changes:
+  PHQ9 change: differencePHQ9
+  GAD7 change: differenceGAD7
+  MMPI change: differenceMMPI
+
+  document.write(output + outputScoreSummary)
+
+END
+</pre>
+
+        <h3>Step 4) Test Cases</h3>
+<pre class="pseudocode">
+  VARIABLES: client name; basePHQ9, baseGAD7, baseMMPI; followupVisitPHQ9,
+  followupVisitGAD7, followupVisitMMPI
+
+TEST CASE 1:
+  INPUT VALUES:
+  Bob Jones; 10, 10, 10; 4, 4, 4
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+    After the last appointment Bob Jones mental health experienced a slight positive trajectory
+
+    Since the last visit Bob Jones experienced the following changes:
+    PHQ9 change: 6
+    GAD7 change: 6
+    MMPI change: 6
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  After the last appointment Bob Jones's mental health experienced a slight positive trajectory
+
+  Since the last visit Bob Jones experienced the following changes:
+
+  PHQ9 change: 6.
+  GAD7 change: 6.
+  MMPI change: 6.
+
+TEST CASE 2:
+  INPUT VALUES:
+  Jim Johnson; 12, 13, 14; 3, 4, 5
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  After the last appointment Jim Johnson's mental health experienced a significant
+  positive trajectory; inquire about life changes.
+
+  Continue working with Jim Johnson if possible.
+
+  Since the last visit Jim Johnson experienced the following changes:
+  PHQ9 change: 9
+  GAD7 change: 9
+  MMPI change: 9
+
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  Since the last appointment Jim Johnson's mental health experienced a significant
+  positive trajectory; inquire about life changes.
+
+  Continue working with Jim Johnson if possible.
+
+  Since the last visit Jim Johnson experienced the following changes:
+  PHQ9 change: 9
+  GAD7 change: 9
+  MMPI change: 9
+
+
+TEST CASE 3:
+  INPUT VALUES:
+  Tom Jones; 30, 31, 32; 10, 11, 12
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  Since the last appointment Jim Johnson experienced an extreme positive shift
+  If this is a sudden shift, and not the result of a major life change, consider screening for a manic episode
+
+  Since the last visit Jim Johnson experienced the following changes:
+  PHQ9 change: 20
+  GAD7 change: 20
+  MMPI change: 20
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  Since the last appointment Jim Johnson experienced an extreme positive shift
+  If this is a sudden shift, and not the result of a major life change, consider
+  screening for a manic episode
+
+  Since the last visit Jim Johnson experienced the following changes:
+  PHQ9 change: 20
+  GAD7 change: 20
+  MMPI change: 20
+
+TEST CASE 4:
+  INPUT VALUES: Sue Summers; 5a, 6b, 7c; x, y, z
+
+  YOUR EXPECTED RESULT - (Fill this out before you test your code):
+  "Invalid data has been detected; please double check your entry to be certain that
+  only numerical data is being entered."
+
+  Since the last visit NAME experienced the following changes:
+
+  PHQ9 change: NaN
+  GAD7 change: NaN
+  MMPI change: NaN
+
+  YOUR ACTUAL RESULT - (Fill this out after you test your code):
+  "Invalid data has been detected; please double check your entry to be certain that
+  only numerical data is being entered."
+
+  Since the last visit Sue Summers experienced the following changes:
+
+  PHQ9 change: NaN
+  GAD7 change: NaN
+  MMPI change: NaN
+
+</pre>
+
+        <h3>Step 5) JavaScript Code</h3>
+<pre class="output">
+
+<!-- Linking to our JavaScript file -->
+<script src ="mentalHealthMetrics.js"></script>
+
+</pre>
+      </main>
+    
+      <footer>
+        <small>Version 2.103</small>
+      </footer>
+    </div>
+  </body>
+</html>
